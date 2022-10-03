@@ -1,6 +1,10 @@
 name: 'Vault to env file'
 description: 'Gets the env secrets from a path in Hashicorp Vault and writes them to a env file'
 author: 'Sarthak Langde'
+branding:
+  icon: 'file-text'  
+  color: 'yellow'
+
 inputs:
   vaultMethod:
     required: false
@@ -23,6 +27,7 @@ inputs:
     required: false
     description: 'Path of env file relative to the root'
     default: './'
+
 runs:
   using: 'composite'
   steps:
