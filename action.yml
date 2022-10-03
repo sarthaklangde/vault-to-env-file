@@ -1,0 +1,39 @@
+name: 'Vault to env file'
+description: 'Gets the env secrets from a path in Hashicorp Vault and writes them to a env file'
+author: 'Sarthak Langde'
+inputs:
+  vaultMethod:
+    required: false
+    description: 'Vault authentication method'
+    default: 'jwt'
+  vaultUrl:
+    required: true
+    description: 'Vault server URL'
+  vaultRole: 
+    required: true
+    description: 'Vault role with required policy attached'
+  vaultSecretPath: 
+    required: true
+    description: 'Vault path of the secrets'
+  envFileName:
+    required: false
+    description: 'Name of the env file'
+    default: '.env'
+  envFilePath:
+    required: false
+    description: 'Path of env file relative to the root'
+    default: './'
+runs:
+  using: 'composite'
+  steps:
+    - name: Retrieve secrets from vault
+      uses: hashicorp/vault-action@v2.4.0
+      with: 
+        method: ${{ inputs.vaultMethod }}
+        url: ${{ inputs.vaultUrl }}
+        exportEnv: false
+        role: ${{ inputs.vaultRole }}
+        secrets: ${{ inputs.vaultSecretPath }} $.$ | envObject
+    - name: Write env to a file
+      shell: bash
+      run: node ${{ github.action_path }}/index.js '${{ steps.vault.outputs.envObject }}' '${{ inputs.envFileName}}' '${{ inputs.envFilePath}}'
