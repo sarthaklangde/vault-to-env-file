@@ -43,8 +43,8 @@ Here are all the inputs available through `with`:
 | `method`            | The method to use to authenticate with Vault.                                                                                                        | `jwt` |          |
 | `role`              | Vault role for specified auth method  | | Yes                                                                                                               |         |          |
 | `secretPath`              | Path of the secrets to fetch                                                                                                |         |    Yes      |
-| `envFileName`              | Name of the file to write the secrets to                                                                                                |     .env    |          |
-| `envFilePath`              | Path of env file relative to the root                                                                                                |     ./    |          |
+| `envFileName`              | Name of the file to write the secrets to                                                                                                |     `.env`    |          |
+| `envFilePath`              | Path of env file relative to the root                                                                                                |     `./`    |          |
 
 
 ## Credits
