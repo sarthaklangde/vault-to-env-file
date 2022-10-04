@@ -6,17 +6,17 @@ branding:
   color: 'yellow'
 
 inputs:
-  vaultMethod:
+  url:
+    required: true
+    description: 'Vault server URL'
+  method:
     required: false
     description: 'Vault authentication method'
     default: 'jwt'
-  vaultUrl:
-    required: true
-    description: 'Vault server URL'
-  vaultRole: 
+  role: 
     required: true
     description: 'Vault role with required policy attached'
-  vaultSecretPath: 
+  secretPath: 
     required: true
     description: 'Vault path of the secrets'
   envFileName:
