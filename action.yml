@@ -34,11 +34,11 @@ runs:
     - name: Retrieve secrets from vault
       uses: hashicorp/vault-action@v2.4.0
       with: 
-        method: ${{ inputs.vaultMethod }}
-        url: ${{ inputs.vaultUrl }}
+        method: ${{ inputs.method }}
+        url: ${{ inputs.url }}
         exportEnv: false
-        role: ${{ inputs.vaultRole }}
-        secrets: ${{ inputs.vaultSecretPath }} $.$ | envObject
+        role: ${{ inputs.role }}
+        secrets: ${{ inputs.secretPath }} $.$ | envObject
     - name: Write env to a file
       shell: bash
       run: node ${{ github.action_path }}/index.js '${{ steps.vault.outputs.envObject }}' '${{ inputs.envFileName}}' '${{ inputs.envFilePath}}'
